@@ -9,7 +9,7 @@ async function getAllJournals() {
 
 
 async function getOneJournalById(id) {
-    const queryText = "SELECT * FROM journals where id= $1";
+    const queryText = "SELECT * FROM journals where id = $1";
     const values = [id];
     const result = await pool.query(queryText, values);
     return result.rows[0];

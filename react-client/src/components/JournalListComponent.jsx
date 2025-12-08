@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import JournalsService from '../JournalsService';
 import '../index.css';
 import { Link } from 'react-router-dom';
+import JournalComponent from './JournalComponent';
 
 const JournalsListComponent = () => {
   const [journals, setJournals] = useState([]);
@@ -15,6 +16,12 @@ const JournalsListComponent = () => {
 
   }, []);
 
+  const handleDelete = (id) => {
+    JournalsService.deleteJournal(id).then(() => {
+      setJournals(prev => prev.filter(j => j.id !== id));
+    });
+  };
+
   return (
     <div>
       <div className="row">
@@ -23,32 +30,11 @@ const JournalsListComponent = () => {
       </div>
       <main className="items-container">
         {journals.map(journal => (
-          <article className="item" key={journal.id}>
-            <div>
-              <img src={journal.imgUrl} alt="Journal Image" className="item-image" />
-            </div>
-            
-            <div className="text">
-              <h3>
-                {journal.title}
-              </h3>
-              <h4>
-                {journal.place_name}
-              </h4>
-              <h4>
-                {new Date(journal.start_date).toISOString().split("T")[0]} to {new Date(journal.end_date).toISOString().split("T")[0]}
-              </h4>
-
-              <p>{journal.text_entry}</p>
-
-              <div className="row">
-                <p><Link className="btn btn-outline-info" to={`/journals/${journal.id}`}>View</Link></p>
-                <button className="btn btn-danger" onClick={() => JournalsService.deleteJournal(journal.id)
-                .then(() => setJournals(journals.filter(j => j.id !== journal.id)))}>Delete</button>
-              </div>
-            </div>
-          </article>
-        ))}
+          <JournalComponent 
+            key={journal.id} 
+            journalID={journal.id}
+            onDelete={handleDelete}
+          />))}
       </main>
     </div>
   );
