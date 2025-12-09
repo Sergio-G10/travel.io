@@ -10,10 +10,11 @@ OneDrive MVP: https://uncg-my.sharepoint.com/:v:/g/personal/saguerra_uncg_edu/IQ
 2. `npm install` from the root directory
 3. `npm start` to start the server.js file
 4. `cd ./react-client/`
-5. `npm run dev` to start React Client
-6. Go to http://localhost:5173
-7. Click login and login with Google
-8. Create, View, and Delete Journal Entries
+5. `npm install`
+6. `npm run dev` to start React Client
+7. Go to http://localhost:5173
+8. Click login and login with Google
+9. Create, View, and Delete Journal Entries
 
 # Reflection
 
