@@ -7,6 +7,7 @@ import JournalComponent from './JournalComponent';
 const JournalsListComponent = () => {
   const [journals, setJournals] = useState([]);
 
+  // Gets all journals
   useEffect(() => {
     console.log("Fetching journals from JournalListComponent")
     JournalsService.getJournals().then((res) => {
@@ -22,11 +23,12 @@ const JournalsListComponent = () => {
     });
   };
 
+  // Iterates through journals and renders components for each
   return (
     <div>
-      <div className="row">
+      <div className="row heading-row">
         <h2 className="text-center">Journals List</h2>
-        <Link to="/add-journal" className="btn btn-outline-primary">Add Journal Entry</Link>
+        <Link to="/add-journal" className="btn">Add Journal Entry</Link>
       </div>
       <main className="items-container">
         {journals.map(journal => (

@@ -1,5 +1,16 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
 #root {
-  padding: 2rem;
+  width: 100%;
+  min-height: 100vh; 
+  display: flex;
+  flex-direction: column;
+  background-color: #F4F4F9;
 }
 
 .logo {
@@ -15,25 +26,27 @@
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
 .card {
   padding: 2em;
 }
 
-.read-the-docs {
-  color: #888;
+.navbar {
+  background-color: #2F4550;
+  padding: 2rem;
+}
+
+.navbar a {
+  color: #F4F4F9;
+  font-weight: 600;
+}
+
+.container {
+  padding-left: 3rem;
+  padding-right: 3rem;
+  display: flex;
+  flex-direction: column;
+}
+
+article {
+  flex-grow: 1;
 }

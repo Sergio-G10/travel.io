@@ -9,12 +9,14 @@ const JournalDetailComponent = () => {
   const [journal, setJournal] = useState(null);
   const mapRef = useRef(null);
 
+  // Gets journal based on ID param
   useEffect(() => {
     JournalsService.getJournalById(id).then((res) => {
       setJournal(res.data);
     });
   }, [id]);
 
+  // Builds Google Map (code adapted from Google Maps JS API docs)
   const loadGoogleMapsScript = (callback) => {
     if (window.google) {
       callback();
@@ -69,15 +71,15 @@ const JournalDetailComponent = () => {
         </h4>
         <p>{journal.text_entry}</p>
 
-        <div
-        ref={mapRef}
-        style={{ width: "75%", height: "200px", marginTop: "20px", marginLeft: "20px", marginRight: "20px", marginBottom: "20px" }}>
+        <div className="map-container"
+        ref={mapRef}>
         </div>
+        <button>
+          <Link className="btn edit-button" to={`/edit-journal/${journal.id}`}>
+            Edit Journal
+          </Link>
+        </button>
       </div>
-
-      <Link className="btn btn-outline-info" to={`/edit-journal/${journal.id}`}>
-        Edit Journal
-      </Link>
     </article>
 )};
 

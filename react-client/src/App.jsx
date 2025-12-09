@@ -11,6 +11,8 @@ import './App.css'
 
 function App() {
 
+  // Protect routes that need authentication
+
   return (
     <>
       <Router>

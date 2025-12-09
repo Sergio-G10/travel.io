@@ -215,5 +215,48 @@ form {
 .row {
   display: flex;
   align-items: center;
+}
+
+.heading-row {
   justify-content: space-between;
+}
+
+.button-row {
+  gap: 20px;
+}
+
+.nav-auth-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.profile-links {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.brand-name {
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+.map-container {
+  width: 500px;
+  height: 400px;
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
+.edit-button {
+  background-color: #2F4550;
+  color: #F4F4F9;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  color: white;
 }

@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 const JournalComponent = ( { journalID, onDelete }) => {
   const [journal, setJournal] = useState(null);
 
+  // Gets journal based on ID prop
   useEffect(() => {
 
     JournalsService.getJournalById(journalID).then((res) => {
@@ -28,7 +29,7 @@ const JournalComponent = ( { journalID, onDelete }) => {
         </h4>
         <p>{journal.text_entry}</p>
 
-        <div className="row">
+        <div className="row button-row">
           <Link className="btn btn-outline-info" to={`/journals/${journal.id}`}>
             View
           </Link>

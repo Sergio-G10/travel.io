@@ -1,5 +1,5 @@
 import React from 'react';
-import { useAuth } from './authContext.jsx';
+import { useAuth } from './AuthContext.jsx';
 import { useNavigate } from 'react-router-dom';
 
 function ProfilePage() {
@@ -26,7 +26,7 @@ function ProfilePage() {
       {/* 3. Display User Information */}
 
 
-      <h3 style={{ marginTop: '1rem' }}>Welcome, {user.displayname}!</h3>
+      <h3 style={{ marginTop: '1rem' }}>Welcome, {user.display_name}!</h3>
 
       <div style={{ lineHeight: '1.6' }}>
         <p><strong>Email:</strong> {user.email}</p>

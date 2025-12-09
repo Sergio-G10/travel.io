@@ -17,6 +17,7 @@ const EditJournalComponent = () => {
 
   const { id } = useParams();
 
+  // Fetches journal and pre-fills form
   useEffect(() => {
     async function fetchJournal() {
       try {
@@ -24,8 +25,8 @@ const EditJournalComponent = () => {
         setTitle(data.title);
         setLatitude(data.place_lat);
         setLongitude(data.place_lng);
-        setStartDate(data.start_date);
-        setEndDate(data.end_date);
+        setStartDate(new Date(data.start_date).toISOString().split("T")[0]);
+        setEndDate(new Date(data.end_date).toISOString().split("T")[0]);
         setTextEntry(data.text_entry);
       } catch (err) {
         console.error("Error fetching journal:", err);
@@ -54,7 +55,7 @@ const EditJournalComponent = () => {
 
     await JournalsService.editJournal(id, editedJournal);
 
-    // Reset form
+    // Reset form after submitting (but it redirects anyway)
     setTitle("");
     setStartDate("");
     setEndDate("");
@@ -81,7 +82,7 @@ const EditJournalComponent = () => {
         </div>
 
         {/* Manual Place Fields */}
-        <div className="form-group mt-2">
+        <div className="form-group">
           <label>Latitude:</label>
           <input
             type="text"
@@ -92,7 +93,7 @@ const EditJournalComponent = () => {
           />
         </div>
 
-        <div className="form-group mt-2">
+        <div className="form-group">
           <label>Longitude:</label>
           <input
             type="text"
@@ -104,7 +105,7 @@ const EditJournalComponent = () => {
         </div>
 
         {/* Dates */}
-        <div className="form-group mt-2">
+        <div className="form-group">
           <label>Start Date:</label>
           <input
             type="date"
@@ -115,7 +116,7 @@ const EditJournalComponent = () => {
           />
         </div>
 
-        <div className="form-group mt-2">
+        <div className="form-group">
           <label>End Date:</label>
           <input
             type="date"
@@ -127,7 +128,7 @@ const EditJournalComponent = () => {
         </div>
 
         {/* Journal Entry */}
-        <div className="form-group mt-2">
+        <div className="form-group">
           <label>Journal Entry:</label>
           <textarea
             className="form-control"

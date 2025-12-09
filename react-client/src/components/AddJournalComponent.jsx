@@ -81,7 +81,7 @@ const AddJournalComponent = () => {
         </div>
 
         {/* Manual Place Fields */}
-        <div className="form-group mt-2">
+        <div className="form-group">
           <label>Latitude:</label>
           <input
             type="text"
@@ -92,7 +92,7 @@ const AddJournalComponent = () => {
           />
         </div>
 
-        <div className="form-group mt-2">
+        <div className="form-group">
           <label>Longitude:</label>
           <input
             type="text"
@@ -104,7 +104,7 @@ const AddJournalComponent = () => {
         </div>
 
         {/* Dates */}
-        <div className="form-group mt-2">
+        <div className="form-group">
           <label>Start Date:</label>
           <input
             type="date"
@@ -115,7 +115,7 @@ const AddJournalComponent = () => {
           />
         </div>
 
-        <div className="form-group mt-2">
+        <div className="form-group">
           <label>End Date:</label>
           <input
             type="date"
@@ -127,7 +127,7 @@ const AddJournalComponent = () => {
         </div>
 
         {/* Journal Entry */}
-        <div className="form-group mt-2">
+        <div className="form-group">
           <label>Journal Entry:</label>
           <textarea
             className="form-control"
@@ -138,7 +138,7 @@ const AddJournalComponent = () => {
         </div>
 
         {/* Image Upload */}
-        <div className="form-group mt-2">
+        <div className="form-group">
           <label>Upload Image:</label>
           <input
             type="file"
@@ -148,7 +148,7 @@ const AddJournalComponent = () => {
         </div>
 
         {imageUrl && (
-          <div className="mt-2">
+          <div className="">
             <img src={imageUrl} alt="Uploaded" style={{ maxWidth: 200 }} />
           </div>
         )}
