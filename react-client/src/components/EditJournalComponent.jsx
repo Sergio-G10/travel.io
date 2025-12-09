@@ -2,55 +2,57 @@ import { useState, useEffect } from "react";
 import JournalsService from "../JournalsService";
 import "../index.css";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import { useParams } from 'react-router-dom';
 
-const AddJournalComponent = () => {
+const EditJournalComponent = () => {
   const [title, setTitle] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [textEntry, setTextEntry] = useState("");
 
-  // Manual place info (now latitude and longitude)
+  // Manual place info
   const [latitude, setLatitude] = useState("");
   const [longitude, setLongitude] = useState("");
 
-  // Image upload
-  const [file, setFile] = useState(null);
-  const [imageUrl, setImageUrl] = useState("");
+
+  const { id } = useParams();
+
+  useEffect(() => {
+    async function fetchJournal() {
+      try {
+        const { data } = await JournalsService.getJournalById(id);
+        setTitle(data.title);
+        setLatitude(data.place_lat);
+        setLongitude(data.place_lng);
+        setStartDate(data.start_date);
+        setEndDate(data.end_date);
+        setTextEntry(data.text_entry);
+      } catch (err) {
+        console.error("Error fetching journal:", err);
+      }
+    }
+    fetchJournal();
+  }, [id]);
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    document.title = "Add Journal";
+    document.title = "Edit Journal";
   }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    let uploadedUrl = imageUrl;
-
-    // Upload image if selected
-    if (file) {
-      const formData = new FormData();
-      formData.append("file", file);
-
-      const res = await axios.post("http://localhost:3000/upload", formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
-      uploadedUrl = res.data.fileUrl;
-    }
-
-    const newJournal = {
+    const editedJournal = {
       title,
       latitude,
       longitude,
       startDate,
       endDate,
       textEntry,
-      imageUrl: uploadedUrl,
     };
 
-    await JournalsService.createJournal(newJournal);
+    await JournalsService.editJournal(id, editedJournal);
 
     // Reset form
     setTitle("");
@@ -59,15 +61,13 @@ const AddJournalComponent = () => {
     setTextEntry("");
     setLatitude("");
     setLongitude("");
-    setFile(null);
-    setImageUrl("");
 
     navigate("/");
   };
 
   return (
     <div>
-      <h2 className="text-center">Add Journal</h2>
+      <h2 className="text-center">Update Journal</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label>Trip Title:</label>
@@ -137,28 +137,12 @@ const AddJournalComponent = () => {
           />
         </div>
 
-        {/* Image Upload */}
-        <div className="form-group mt-2">
-          <label>Upload Image:</label>
-          <input
-            type="file"
-            className="form-control"
-            onChange={(e) => setFile(e.target.files[0])}
-          />
-        </div>
-
-        {imageUrl && (
-          <div className="mt-2">
-            <img src={imageUrl} alt="Uploaded" style={{ maxWidth: 200 }} />
-          </div>
-        )}
-
         <button type="submit" className="btn btn-primary mt-3">
-          Save Journal
+          Update Journal
         </button>
       </form>
     </div>
   );
 };
 
-export default AddJournalComponent;
+export default EditJournalComponent;

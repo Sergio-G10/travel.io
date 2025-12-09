@@ -7,6 +7,8 @@ function Nav() {
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container">
         <Link className="navbar-brand" to="/">travel.io</Link>
+        <Link to="/login">Login</Link>
+        <Link to="/profile">Profile</Link>
       </div>
     </nav>
   );

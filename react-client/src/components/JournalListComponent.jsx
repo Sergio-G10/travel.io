@@ -8,7 +8,7 @@ const JournalsListComponent = () => {
   const [journals, setJournals] = useState([]);
 
   useEffect(() => {
-
+    console.log("Fetching journals from JournalListComponent")
     JournalsService.getJournals().then((res) => {
       setJournals(res.data);
       document.title = 'Journals List';

@@ -1,7 +1,8 @@
+// Handles file uploads to Cloudflare R2
 const express = require("express");
 const router = express.Router();
 const multer = require("multer");
-const r2 = require("../r2/client"); // make sure this is also CommonJS
+const r2 = require("../r2/client");
 const { PutObjectCommand } = require("@aws-sdk/client-s3");
 
 const upload = multer({ storage: multer.memoryStorage() });

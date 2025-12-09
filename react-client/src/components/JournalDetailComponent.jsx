@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import JournalsService from '../JournalsService';
 import '../index.css';
 import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const JournalDetailComponent = () => {
   const { id } = useParams();
@@ -73,6 +74,10 @@ const JournalDetailComponent = () => {
         style={{ width: "75%", height: "200px", marginTop: "20px", marginLeft: "20px", marginRight: "20px", marginBottom: "20px" }}>
         </div>
       </div>
+
+      <Link className="btn btn-outline-info" to={`/edit-journal/${journal.id}`}>
+        Edit Journal
+      </Link>
     </article>
 )};
 

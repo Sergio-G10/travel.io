@@ -6,10 +6,6 @@ import { Link } from 'react-router-dom';
 const JournalComponent = ( { journalID, onDelete }) => {
   const [journal, setJournal] = useState(null);
 
-  // JournalsService.getJournalById(journalID).then((res) => {
-  //   setJournal(res.data);
-  // });
-
   useEffect(() => {
 
     JournalsService.getJournalById(journalID).then((res) => {

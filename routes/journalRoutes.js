@@ -1,3 +1,4 @@
+// journalRoutes.js
 "use strict";
 const express = require("express");
 const router = express.Router();
@@ -17,4 +18,5 @@ router.get("/", journalController.fetchAllJournals);
 router.get("/:id", journalController.fetchJournalById);
 router.delete("/:id", journalController.removeJournal);
 router.post("/", journalController.createJournal);
+router.put("/:id", journalController.editJournal);
 module.exports = router;
