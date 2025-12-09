@@ -11,7 +11,8 @@ const AddJournalComponent = () => {
   const [textEntry, setTextEntry] = useState("");
 
   // Manual place info
-  const [placeId, setPlaceId] = useState("");
+  const [latitude, setLatitude] = useState("");
+  const [longitude, setLongitude] = useState("");
 
   // Image upload
   const [file, setFile] = useState(null);
@@ -41,7 +42,8 @@ const AddJournalComponent = () => {
 
     const newJournal = {
       title,
-      placeId,
+      latitude,
+      longitude,
       startDate,
       endDate,
       textEntry,
@@ -55,7 +57,8 @@ const AddJournalComponent = () => {
     setStartDate("");
     setEndDate("");
     setTextEntry("");
-    setPlaceId("");
+    setLatitude("");
+    setLongitude("");
     setFile(null);
     setImageUrl("");
 
@@ -79,13 +82,24 @@ const AddJournalComponent = () => {
 
         {/* Manual Place Fields */}
         <div className="form-group mt-2">
-          <label>Place ID:</label>
+          <label>Latitude:</label>
           <input
             type="text"
             className="form-control"
-            value={placeId}
-            onChange={(e) => setPlaceId(e.target.value)}
-            placeholder="Enter Place ID manually"
+            value={latitude}
+            onChange={(e) => setLatitude(e.target.value)}
+            placeholder="Enter Latitude"
+          />
+        </div>
+
+        <div className="form-group mt-2">
+          <label>Longitude:</label>
+          <input
+            type="text"
+            className="form-control"
+            value={longitude}
+            onChange={(e) => setLongitude(e.target.value)}
+            placeholder="Enter Longitude"
           />
         </div>
 

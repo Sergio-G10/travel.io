@@ -23,9 +23,9 @@ async function deleteJournal(id) {
     return result.rowCount;
 }
 
-async function addJournal(title, placeId, startDate, endDate, textEntry, imgUrl) {
-    let queryText = "INSERT INTO journals ( title, start_date, end_date, place_id, text_entry, \"imgUrl\") VALUES ($1, $2, $3, $4, $5, $6) RETURNING *";
-    let values = [title, startDate, endDate, placeId, textEntry, imgUrl];
+async function addJournal(title, latitude, longitude, startDate, endDate, textEntry, imgUrl) {
+    let queryText = "INSERT INTO journals ( title, start_date, end_date, place_lat, place_lng, text_entry, \"imgUrl\") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *";
+    let values = [title, startDate, endDate, latitude, longitude, textEntry, imgUrl];
     const result = await pool.query(queryText, values);
     return result.rows[0];
 }

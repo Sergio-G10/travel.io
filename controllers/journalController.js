@@ -46,18 +46,18 @@ async function removeJournal(req, res) {
 }
 
 async function createJournal(req, res) {
-    const { title, placeId, startDate, endDate, textEntry, imageUrl } = req.body;
-    console.log("Received:", { title, placeId, startDate, endDate, textEntry, imageUrl });
-    if (title && placeId && startDate && endDate && textEntry) {
+    const { title, latitude, longitude, startDate, endDate, textEntry, imageUrl } = req.body;
+    console.log("Received:", { title, latitude, longitude, startDate, endDate, textEntry, imageUrl });
+    if (title && latitude && longitude && startDate && endDate && textEntry) {
         try {
-            const newJournal = await model.addJournal(title, placeId, startDate, endDate, textEntry, imageUrl || null);
+            const newJournal = await model.addJournal(title, latitude, longitude, startDate, endDate, textEntry, imageUrl || null);
             res.status(201).json(newJournal);
         } catch (err) {
             console.error(err);
             res.status(500).send("Server error");
         }
     } else {
-        res.status(400).send(`Missing required fields! Got: title=${title}, placeId=${placeId}, startDate=${startDate}, endDate=${endDate}, textEntry=${textEntry}`);
+        res.status(400).send(`Missing required fields! Got: title=${title}, latitude=${latitude}, longitude=${longitude} startDate=${startDate}, endDate=${endDate}, textEntry=${textEntry}`);
     }
 }
 
