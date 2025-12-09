@@ -1,11 +1,12 @@
 import '../index.css'
+import { Link } from 'react-router-dom';
 
 function Nav() {
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container">
-        <a className="navbar-brand" href="#">travel.io</a>
+        <Link className="navbar-brand" to="/">travel.io</Link>
       </div>
     </nav>
   );
